@@ -199,6 +199,17 @@ def logout():
     if user:
         log_event(user, "User logged out")
     return redirect(url_for("login"))
+# Auto-create default user if not exists
+def ensure_default_user():
+    default_username = "demo"
+    default_password = "demo123"
+    user = get_user_by_username(default_username)
+    if not user:
+        hashed = generate_password_hash(default_password)
+        save_user(default_username, hashed)
+        print(f"Default user '{default_username}' created.")
+
+ensure_default_user()
 
 if __name__ == "__main__":
     app.run(debug=True)
