@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, send_file, redirect, url_for, session, flash, send_from_directory
-from steg_crypto import encrypt_message, decrypt_message, embed_message_in_image, extract_message_from_image
+from .steg_crypto import encrypt_message, decrypt_message, embed_message_in_image, extract_message_from_image
 from werkzeug.utils import secure_filename
 from werkzeug.security import generate_password_hash, check_password_hash
 from functools import wraps
