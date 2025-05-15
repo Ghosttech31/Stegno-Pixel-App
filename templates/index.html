@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Welcome - Secure Steg</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        margin: 0;
+        font-family: "Segoe UI", sans-serif;
+        background: linear-gradient(135deg, #f6f9fc, #dff3ec);
+        color: #333;
+      }
+
+      .navbar {
+        display: flex;
+        justify-content: flex-end;
+        padding: 1rem 2rem;
+        background-color: #ffffff;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .logout-btn {
+        padding: 8px 16px;
+        font-size: 14px;
+        border: none;
+        background-color: #e63946;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .logout-btn:hover {
+        background-color: #d62839;
+      }
+
+      .main-content {
+        text-align: center;
+        padding: 50px 20px;
+      }
+
+      h1 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+      }
+
+      .features {
+        margin: 30px 0;
+        font-size: 1.2rem;
+      }
+
+      .btn-group {
+        margin-top: 40px;
+      }
+
+      .btn {
+        display: inline-block;
+        margin: 10px;
+        padding: 15px 30px;
+        background-color: #00b4d8;
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: background-color 0.3s ease;
+      }
+
+      .btn:hover {
+        background-color: #0096c7;
+      }
+
+      footer {
+        margin-top: 60px;
+        text-align: center;
+        padding: 1rem;
+        background-color: #f0f0f0;
+        font-size: 0.9rem;
+      }
+
+      @media (max-width: 600px) {
+        h1 {
+          font-size: 2rem;
+        }
+
+        .btn {
+          padding: 12px 24px;
+          font-size: 0.9rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="navbar">
+      <form action="{{ url_for('logout') }}" method="get">
+        <button class="logout-btn">Logout</button>
+      </form>
+    </div>
+
+    <div class="main-content">
+      <h1>Welcome to Secure Steganography App</h1>
+      <div class="features">
+        Hide your sensitive messages securely using image steganography combined
+        with AES encryption.
+      </div>
+      <div class="btn-group">
+        <a href="{{ url_for('encode') }}" class="btn">Encode Message</a>
+        <a href="{{ url_for('decode') }}" class="btn">Decode Message</a>
+      </div>
+    </div>
+
+    <footer>&copy;Developed by Vishal Sai</footer>
+  </body>
+</html>

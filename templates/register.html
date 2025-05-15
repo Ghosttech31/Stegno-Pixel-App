@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Register</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body
+    class="bg-black text-white p-6 min-h-screen flex justify-center items-center"
+  >
+    <form
+      method="post"
+      class="bg-white/10 p-6 rounded max-w-sm w-full space-y-4"
+    >
+      <h2 class="text-2xl font-bold mb-4 text-center">Register</h2>
+      <input
+        type="text"
+        name="username"
+        placeholder="Username"
+        required
+        class="w-full p-2 rounded bg-black text-white"
+      />
+      <input
+        type="password"
+        name="password"
+        placeholder="Password"
+        required
+        class="w-full p-2 rounded bg-black text-white"
+      />
+      <button
+        type="submit"
+        class="bg-blue-600 hover:bg-blue-700 w-full py-2 rounded font-bold"
+      >
+        Register
+      </button>
+      <p class="text-center mt-4 text-sm">
+        Already have an account?
+        <a href="/login" class="underline text-blue-400">Login</a>
+      </p>
+      {% with messages = get_flashed_messages(with_categories=true) %} {% if
+      messages %}
+      <ul>
+        {% for category, message in messages %}
+        <li class="text-red-400">{{ message }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %} {% endwith %}
+    </form>
+  </body>
+</html>

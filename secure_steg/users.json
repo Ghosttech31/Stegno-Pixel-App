@@ -1,0 +1,6 @@
+[
+  {
+    "username": "admin",
+    "password": "scrypt:32768:8:1$LI5U5LieP8QztAcu$83e1d9bfbb9e5eb120b53d29226466dc971d144b623af4c7e8e43e93949d5a8c8d176797873c840eabc0d1ed32258770e405b34993b3d6373457363e6e24e670"
+  }
+]

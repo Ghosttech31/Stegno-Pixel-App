@@ -1,0 +1,121 @@
+{% extends "base.html" %} {% block title %}Encode - Secure Steg{% endblock %} {%
+block header %}Secure Steg - Encode Message{% endblock %} {% block styles %}
+<style>
+  body {
+    background: #f0f4f8; /* light solid color background */
+    color: #333;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  }
+  main {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    max-width: 600px;
+    margin: 2rem auto;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  }
+  form label {
+    display: block;
+    margin-top: 1rem;
+    font-weight: 600;
+  }
+  input[type="file"],
+  input[type="password"],
+  textarea {
+    width: 100%;
+    padding: 0.6rem;
+    margin-top: 0.3rem;
+    border: 1.5px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+  }
+  input[type="file"]:focus,
+  input[type="password"]:focus,
+  textarea:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  button {
+    margin-top: 1.5rem;
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1.1rem;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  button:hover {
+    background: #0056b3;
+  }
+  .result,
+  .error {
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 6px;
+    font-weight: 600;
+  }
+  .result {
+    background-color: #d4edda;
+    color: #155724;
+  }
+  .error {
+    background-color: #f8d7da;
+    color: #721c24;
+  }
+  .home-btn {
+    display: inline-block;
+    margin-top: 1rem;
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .home-btn:hover {
+    text-decoration: underline;
+  }
+</style>
+{% endblock %} {% block content %}
+<main>
+  <form method="POST" enctype="multipart/form-data">
+    <label for="image">Select Image to Encode</label>
+    <input type="file" id="image" name="image" accept="image/*" required />
+
+    <label for="message">Enter Message to Hide</label>
+    <textarea
+      id="message"
+      name="message"
+      placeholder="Your secret message"
+      rows="4"
+      required
+    ></textarea>
+
+    <label for="password">Enter Password</label>
+    <input
+      type="password"
+      id="password"
+      name="password"
+      placeholder="Your password"
+      required
+    />
+
+    <button type="submit">Encode</button>
+
+    {% if result %}
+    <div class="result">{{ result }}</div>
+    {% if encoded_filename %}
+    <div style="text-align: center; margin-top: 10px">
+      <a
+        href="{{ url_for('download', filename=encoded_filename) }}"
+        style="color: #007bff"
+        >Download Encoded Image</a
+      >
+    </div>
+    {% endif %} {% endif %} {% if error %}
+    <div class="error">{{ error }}</div>
+    {% endif %}
+  </form>
+</main>
+{% endblock %}

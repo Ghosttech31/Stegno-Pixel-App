@@ -1,0 +1,120 @@
+{% extends "base.html" %} {% block title %}Decode - Secure Steg{% endblock %} {%
+block header %}Secure Steg - Decode Message{% endblock %} {% block styles %}
+<style>
+  body {
+    background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: #2c3e50;
+  }
+  main {
+    background: #ffffffcc; /* white with slight transparency */
+    max-width: 600px;
+    margin: 3rem auto;
+    padding: 2.5rem 2rem;
+    border-radius: 15px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    transition: box-shadow 0.3s ease;
+  }
+  main:hover {
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.18);
+  }
+  form label {
+    display: block;
+    margin-top: 1.4rem;
+    font-weight: 700;
+    font-size: 1.1rem;
+  }
+  input[type="file"],
+  input[type="password"] {
+    width: 100%;
+    margin-top: 0.4rem;
+    padding: 0.65rem 1rem;
+    border: 2px solid #70a1ff;
+    border-radius: 12px;
+    font-size: 1rem;
+    color: #34495e;
+    background: #f7f9fc;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+  }
+  input[type="file"]:focus,
+  input[type="password"]:focus {
+    border-color: #3742fa;
+    background-color: #e6f0ff;
+    outline: none;
+  }
+  button {
+    margin-top: 2rem;
+    width: 100%;
+    padding: 0.85rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    background: #3742fa;
+    color: #fff;
+    border: none;
+    border-radius: 18px;
+    cursor: pointer;
+    box-shadow: 0 6px 14px rgba(55, 66, 250, 0.6);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  button:hover {
+    background: #1e2ecc;
+    box-shadow: 0 8px 20px rgba(30, 46, 204, 0.7);
+  }
+  .decoded-message {
+    margin-top: 1.5rem;
+    background-color: #dff9fb;
+    border-radius: 12px;
+    padding: 1rem 1.5rem;
+    color: #2f3542;
+    font-weight: 600;
+    white-space: pre-wrap;
+    box-shadow: inset 0 0 10px #70a1ff44;
+  }
+  .error {
+    margin-top: 1.5rem;
+    background-color: #ff6b6b;
+    border-radius: 12px;
+    padding: 1rem 1.5rem;
+    color: white;
+    font-weight: 700;
+    text-align: center;
+  }
+  .home-btn {
+    display: inline-block;
+    margin-top: 2rem;
+    font-weight: 700;
+    color: #3742fa;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+  }
+  .home-btn:hover {
+    color: #1e2ecc;
+    text-decoration: underline;
+  }
+</style>
+{% endblock %} {% block content %}
+<main>
+  <form method="POST" enctype="multipart/form-data" novalidate>
+    <label for="image">Select Image to Decode</label>
+    <input type="file" id="image" name="image" accept="image/*" required />
+
+    <label for="password">Enter Password</label>
+    <input
+      type="password"
+      id="password"
+      name="password"
+      placeholder="Your password"
+      required
+    />
+
+    <button type="submit">Decode</button>
+
+    {% if decoded_message %}
+    <div class="decoded-message">{{ decoded_message }}</div>
+    {% endif %} {% if error %}
+    <div class="error">{{ error }}</div>
+    {% endif %}
+  </form>
+</main>
+{% endblock %}
