@@ -4,6 +4,7 @@ from werkzeug.utils import secure_filename
 from werkzeug.security import generate_password_hash, check_password_hash
 from functools import wraps
 import datetime
+import tempfile
 import json
 import os
 
@@ -102,6 +103,8 @@ def encode():
 
             encrypted_message = encrypt_message(message, password)
             encoded_filename = f"encoded_{filename}"
+            ENCODE_FOLDER = os.path.join(tempfile.gettempdir(), "encoded")
+            os.makedirs(ENCODE_FOLDER, exist_ok=True)
             output_path = os.path.join(ENCODED_FOLDER, encoded_filename)
             embed_message_in_image(input_path, encrypted_message, output_path)
 
@@ -138,10 +141,11 @@ def decode():
 
     return render_template("decode.html", decoded_message=decoded_message, error=error)
 
-@app.route("/download/<filename>")
+@app.route('/download/<filename>')
 @login_required
 def download(filename):
-    return send_from_directory(ENCODED_FOLDER, filename, as_attachment=True)
+    download_folder = os.path.join(tempfile.gettempdir(), "encoded")
+    return send_from_directory(download_folder, filename, as_attachment=True)
 
 @app.route("/mylogs")
 @login_required
