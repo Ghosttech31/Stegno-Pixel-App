@@ -137,10 +137,13 @@ def decode():
 
             encrypted_message = extract_message_from_image(input_path)
             decoded_message = decrypt_message(encrypted_message, password)
+
         except Exception as e:
             error = f"Decoding failed: {str(e)}"
+            print(f"[ERROR] Decoding error: {e}")  # Add this for logging
 
     return render_template("decode.html", decoded_message=decoded_message, error=error)
+
 
 @app.route('/download/<filename>')
 @login_required
