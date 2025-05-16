@@ -105,7 +105,8 @@ def encode():
             encoded_filename = f"encoded_{filename}"
             ENCODE_FOLDER = os.path.join(tempfile.gettempdir(), "encoded")
             os.makedirs(ENCODE_FOLDER, exist_ok=True)
-            output_path = os.path.join(ENCODED_FOLDER, encoded_filename)
+            output_path = os.path.join(ENCODE_FOLDER, encoded_filename)
+
             embed_message_in_image(input_path, encrypted_message, output_path)
 
             result = "Message encoded and embedded successfully!"
